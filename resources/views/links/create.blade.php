@@ -22,7 +22,8 @@
             @enderror
         </div>
         <br>
-        <button>Register</button>
+        <a href="{{ route('dashboard') }}">Cancelar</a>
+        <button>Criar</button>
 
     </form>
 </div>
