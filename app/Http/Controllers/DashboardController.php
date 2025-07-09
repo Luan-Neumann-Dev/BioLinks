@@ -14,7 +14,10 @@ class DashboardController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        $links = $user->links;
+        $links = $user->links()
+            ->orderBy('order')
+            ->get();
+                
 
         return view('dashboard', compact('links'));
     }
