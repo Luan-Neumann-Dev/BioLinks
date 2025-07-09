@@ -37,7 +37,7 @@ class LinkController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Link $link)
-    {
+    {        
         return view('links.edit', compact('link'));
     }
 
@@ -63,13 +63,13 @@ class LinkController extends Controller
 
     public function up(Link $link) 
     {
-       $link->moveUp();
+        $link->moveUp();
 
         return back();
     }
 
     public function down(Link $link) 
-    {
+    {        
         $link->moveDown();
 
         return back();
