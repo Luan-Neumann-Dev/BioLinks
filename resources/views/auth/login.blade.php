@@ -1,29 +1,45 @@
-<div>
-    <h1>Login</h1>
+<x-layout.app>
+    <x-card>
+        <!-- Header -->
+        <x-title title="Entrar" subtitle="Faça login na sua conta" />
 
-    @if ($message = session()->get('message'))
-        <div>{{ $message }}</div>
-    @endif
+        <!-- Session Message -->
+        <x-alert type="error" :message="session()->get('message')" />
 
-    <form action="{{ route('login') }}" method="post">
-        @csrf
+        <!-- Form -->
+        <x-form :route="route('login')" post>
 
-        <div>
-            <input name="email" placeholder="Email" value="{{ old('email') }}"/>
-            @error('email')
-                <span>{{ $message }}</span>
-            @enderror
+            <!-- Email Field -->
+            <x-input
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="Digite seu email"
+                value="{{ old('email') }}"
+            />
+
+            <!-- Password Field -->
+            <x-input
+                label="Senha"
+                name="password"
+                type="password"
+                placeholder="Digite sua senha"
+            />
+
+            <!-- Login Button -->
+            <x-button>
+                Entrar
+            </x-button>
+        </x-form>
+
+        <!-- Register Link -->
+        <div class="text-center mt-6">
+            <p class="text-base-content/70">
+                Não tem uma conta?
+                <a href="{{ route('register') }}" class="link link-primary">
+                    Cadastre-se
+                </a>
+            </p>
         </div>
-        <br>
-        <div>
-            <input type="password" name="password" placeholder="Password" />
-            @error('password')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-        <br>
-        <button>Log In</button>
-
-    </form>
-
-</div>
+    </x-card>
+</x-layout.app>

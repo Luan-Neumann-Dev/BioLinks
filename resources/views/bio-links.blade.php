@@ -1,13 +1,15 @@
-<div>
+<x-layout.app>
 
-    <img src="/storage/{{ $user->photo }}" alt="Photo Profile">
+    <div>
 
-    <h2>User</h2>
+        <img src="/storage/{{ $user->photo }}" alt="Photo Profile">
 
-    <h3>{{ $user->description }}</h3>
+        <h2>User</h2>
 
-    <ul>
-        @foreach ($user->links as $link )
+        <h3>{{ $user->description }}</h3>
+
+        <ul>
+            @foreach ($user->links as $link )
             <li>
 
                 <a href="{{ $link->link }}" target="_blank">
@@ -15,6 +17,9 @@
                 </a>
 
             </li>
-        @endforeach
-    </ul>
-</div>
+            @endforeach
+        </ul>
+    </div>
+
+
+</x-layout.app>

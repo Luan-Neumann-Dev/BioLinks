@@ -1,40 +1,64 @@
-<div>
-    <h1>Register</h1>
+<x-layout.app>
+    <x-card>
+        <!-- Header -->
+        <x-title title="Criar Conta" subtitle="Cadastre-se para começar" />
 
-    @if ($message = session()->get('message'))
-        <div>{{ $message }}</div>
-    @endif
+        <!-- Session Message -->
+        <x-alert type="error" :message="session()->get('message')" />
 
-    <form action="{{ route('register') }}" method="post">
-        @csrf
+        <!-- Form -->
+        <form action="{{ route('register') }}" method="post" class="space-y-4">
+            @csrf
 
-        <div>
-            <input name="name" placeholder="Name" value="{{ old('name') }}"/>
-            @error('name')
-                <span>{{ $message }}</span>
-            @enderror
+            <!-- Name Field -->
+            <x-input
+                label="Nome"
+                name="name"
+                type="text"
+                placeholder="Digite seu nome"
+                value="{{ old('name') }}"
+            />
+
+            <!-- Email Field -->
+            <x-input
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="Digite seu email"
+                value="{{ old('email') }}"
+            />
+
+            <!-- Email Confirmation Field -->
+            <x-input
+                label="Confirmar email"
+                name="email_confirmation"
+                type="email"
+                placeholder="Confirme seu email"
+            />
+
+
+            <!-- Password Field -->
+            <x-input
+                label="Senha"
+                name="password"
+                type="password"
+                placeholder="Digite sua senha"
+            />
+
+            <!-- Register Button -->
+            <x-button>
+                Criar Conta
+            </x-button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="text-center mt-6">
+            <p class="text-base-content/70">
+                Já tem uma conta?
+                <a href="{{ route('login') }}" class="link link-primary">
+                    Faça login
+                </a>
+            </p>
         </div>
-        <br>
-        <div>
-            <input name="email" placeholder="Email" value="{{ old('email') }}"/>
-            @error('email')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-        <br>
-        <div>
-            <input name="email_confirmation" placeholder="Confirm your Email"/>
-        </div>
-        <br>
-        <div>
-            <input type="password" name="password" placeholder="Password" />
-            @error('password')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-        <br>
-        <button>Register</button>
-
-    </form>
-
-</div>
+    </x-card>
+</x-layout.app>

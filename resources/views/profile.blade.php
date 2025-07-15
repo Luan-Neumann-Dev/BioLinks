@@ -1,48 +1,50 @@
-<div>
-    <h1>Profile</h1>
+<x-layout.app>
+    <div>
+        <h1>Profile</h1>
 
-    @if ($message = session()->get('message'))
+        @if ($message = session()->get('message'))
         <div>{{ $message }}</div>
-    @endif
+        @endif
 
-    <form action="{{ route('profile') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+        <form action="{{ route('profile') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
 
-        <div>
-            <img src="/storage/{{ $user->photo }}" alt="Profile picture">
-            <input type="file" name="photo" >
-        </div>
-        <br>
+            <div>
+                <img src="/storage/{{ $user->photo }}" alt="Profile picture">
+                <input type="file" name="photo">
+            </div>
+            <br>
 
-        <div>
-            <input name="name" placeholder="Name" value="{{ old('name', $user->name) }}"/>
-            @error('name')
+            <div>
+                <input name="name" placeholder="Name" value="{{ old('name', $user->name) }}" />
+                @error('name')
                 <span>{{ $message }}</span>
-            @enderror
-        </div>
-        <br>
+                @enderror
+            </div>
+            <br>
 
-        <div>
-            <textarea name="description" placeholder="Resume">{{ old('description', $user->description) }}</textarea>
-            @error('description')
+            <div>
+                <textarea name="description" placeholder="Resume">{{ old('description', $user->description) }}</textarea>
+                @error('description')
                 <span>{{ $message }}</span>
-            @enderror
-        </div>
-        <br>
+                @enderror
+            </div>
+            <br>
 
-        <div>
-            <span>biolinks.com.br/</span>
-            <input name="handler" placeholder="@yourLink" value="{{ old('handler', $user->handler) }}"/>
-            @error('handler')
+            <div>
+                <span>biolinks.com.br/</span>
+                <input name="handler" placeholder="@yourLink" value="{{ old('handler', $user->handler) }}" />
+                @error('handler')
                 <span>{{ $message }}</span>
-            @enderror
-        </div>
-        <br>
+                @enderror
+            </div>
+            <br>
 
-        <a href="{{ route('dashboard')}}">Cancelar</a>
-        <button>Update</button>
+            <a href="{{ route('dashboard')}}">Cancelar</a>
+            <button>Update</button>
 
-    </form>
+        </form>
 
-</div>
+    </div>
+</x-layout.app>
