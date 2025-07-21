@@ -27,7 +27,7 @@
             />
 
             <!-- Login Button -->
-            <x-button>
+            <x-button class='w-full' mt>
                 Entrar
             </x-button>
         </x-form>
@@ -36,9 +36,9 @@
         <div class="text-center mt-6">
             <p class="text-base-content/70">
                 Não tem uma conta?
-                <a href="{{ route('register') }}" class="link link-primary">
+                <x-a href="{{ route('register') }}">
                     Cadastre-se
-                </a>
+                </x-a>
             </p>
         </div>
     </x-card>

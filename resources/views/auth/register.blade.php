@@ -7,8 +7,7 @@
         <x-alert type="error" :message="session()->get('message')" />
 
         <!-- Form -->
-        <form action="{{ route('register') }}" method="post" class="space-y-4">
-            @csrf
+        <x-form :route="route('register')" post>
 
             <!-- Name Field -->
             <x-input
@@ -46,18 +45,18 @@
             />
 
             <!-- Register Button -->
-            <x-button>
+            <x-button class='w-full' mt>
                 Criar Conta
             </x-button>
-        </form>
+        </x-form>
 
         <!-- Login Link -->
         <div class="text-center mt-6">
             <p class="text-base-content/70">
                 Já tem uma conta?
-                <a href="{{ route('login') }}" class="link link-primary">
+                <x-a href="{{ route('login') }}">
                     Faça login
-                </a>
+                </x-a>
             </p>
         </div>
     </x-card>

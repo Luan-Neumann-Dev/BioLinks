@@ -1,50 +1,52 @@
 <x-layout.app>
-    <div>
-        <h1>Profile</h1>
+        <x-card>
+        <!-- Header -->
+        <x-title title="Profile" subtitle="Editando seu perfil!"/>
 
-        @if ($message = session()->get('message'))
-        <div>{{ $message }}</div>
-        @endif
+        <!-- Session Message -->
+        <x-alert />
 
-        <form action="{{ route('profile') }}" method="post" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+        <x-form :route="route('profile')" put enctype="multipart/form-data">
 
-            <div>
-                <img src="/storage/{{ $user->photo }}" alt="Profile picture">
-                <input type="file" name="photo">
+            <div class="flex items-center gap-4 flex-col">
+                <x-img src="/storage/{{ $user->photo }}" alt="Foto de perfil"/>
+                
+                <x-file-input name="photo" />
             </div>
-            <br>
 
-            <div>
-                <input name="name" placeholder="Name" value="{{ old('name', $user->name) }}" />
-                @error('name')
-                <span>{{ $message }}</span>
-                @enderror
-            </div>
-            <br>
+            <!--Name Field -->
+            <x-input
+                label="Nome"
+                name="name"
+                type="text"
+                placeholder="Digite o seu nome"
+                value="{{ old('name', $user->name) }}"
+            />
 
-            <div>
-                <textarea name="description" placeholder="Resume">{{ old('description', $user->description) }}</textarea>
-                @error('description')
-                <span>{{ $message }}</span>
-                @enderror
-            </div>
-            <br>
+            <x-textarea
+                label="Descrição"
+                name="description"
+                value="{{ old('description', $user->description) }}"
+            />
 
-            <div>
-                <span>biolinks.com.br/</span>
-                <input name="handler" placeholder="@yourLink" value="{{ old('handler', $user->handler) }}" />
-                @error('handler')
-                <span>{{ $message }}</span>
-                @enderror
-            </div>
-            <br>
+            <x-input
+                label="Arroba"
+                name="handler"
+                type="text"
+                placeholder="Digite o seu arroba"
+                value="{{ old('handler', $user->handler) }}"
+                prefix="biolinks.com.br/"
+            />
 
-            <a href="{{ route('dashboard')}}">Cancelar</a>
-            <button>Update</button>
-
-        </form>
-
-    </div>
+           <x-button-group>
+                <x-a href="{{ route('dashboard') }}" class="mt-6">
+                    Cancelar
+                </x-a>
+                
+                <x-button class="w-40" mt>
+                   Atualizar perfil
+                </x-button>
+            </x-button-group>
+        </x-form>
+    </x-card>
 </x-layout.app>

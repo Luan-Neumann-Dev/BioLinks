@@ -19,6 +19,6 @@ class DashboardController extends Controller
             ->get();
                 
 
-        return view('dashboard', compact('links'));
+        return view('dashboard', compact(['links', 'user']));
     }
 }

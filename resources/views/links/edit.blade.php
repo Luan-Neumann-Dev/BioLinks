@@ -1,32 +1,39 @@
 <x-layout.app>
-    <div>
-        <h1>Editando link de ID {{ $link->id }}</h1>
+        <x-card>
+        <!-- Header -->
+        <x-title title="Editando link Id# {{ $link->id }}"/>
 
-        @if ($message = session()->get('message'))
-        <div>{{ $message }}</div>
-        @endif
+        <!-- Session Message -->
+        <x-alert type="error" :message="session()->get('message')" />
 
-        <form action="{{ route('links.edit', $link) }}" method="post">
-            @csrf
-            @method('put')
+        <x-form :route="route('links.edit', $link)" put>
+            <!--Link Field -->
+            <x-input
+                label="Link"
+                name="link"
+                type="text"
+                placeholder="Digite um link"
+                value="{{ old('link', $link->link) }}"
+            />
 
-            <div>
-                <input name="link" placeholder="Link" value="{{ old('link', $link->link) }}" />
-                @error('link')
-                <span>{{ $message }}</span>
-                @enderror
-            </div>
-            <br>
-            <div>
-                <input name="name" placeholder="Name" value="{{ old('name', $link->name) }}" />
-                @error('name')
-                <span>{{ $message }}</span>
-                @enderror
-            </div>
-            <br>
-            <a href="{{ route('dashboard') }}">Cancelar</a>
-            <button>Editar</button>
+            <!--Name Field -->
+            <x-input
+                label="Nome"
+                name="name"
+                type="text"
+                placeholder="Digite o nome do link"
+                value="{{ old('name', $link->name) }}"
+            />
 
-        </form>
-    </div>
+           <x-button-group>
+                <x-a href="{{ route('dashboard') }}" class="mt-6">
+                    Cancelar
+                </x-a>
+                
+                <x-button class="w-40" mt>
+                   Editar link
+                </x-button>
+            </x-button-group>
+        </x-form>
+    </x-card>
 </x-layout.app>

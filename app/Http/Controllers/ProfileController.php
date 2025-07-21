@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $user->fill($data)->save();
 
         return back()
-            ->with('message', 'Profile atualizado com sucesso!');
+            ->with('success', 'Profile atualizado com sucesso!');
     }
     
 }

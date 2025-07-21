@@ -1,6 +1,6 @@
 @props([
     'title',
-    'subtitle'    
+    'subtitle' => null    
 ])
 
 <div class="text-center mb-6">

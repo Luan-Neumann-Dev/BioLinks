@@ -1,31 +1,39 @@
 <x-layout.app>
-    <div>
-        <h1>Criar um Link</h1>
+        <x-card>
+        <!-- Header -->
+        <x-title title="Criar um Link"/>
 
-        @if ($message = session()->get('message'))
-        <div>{{ $message }}</div>
-        @endif
+        <!-- Session Message -->
+        <x-alert type="error" :message="session()->get('message')" />
 
-        <form action="{{ route('links.create') }}" method="post">
-            @csrf
+        <x-form :route="route('links.create')" post>
+            <!--Link Field -->
+            <x-input
+                label="Link"
+                name="link"
+                type="text"
+                placeholder="Digite um link"
+                value="{{ old('link') }}"
+            />
 
-            <div>
-                <input name="link" placeholder="Link" value="{{ old('link') }}" />
-                @error('link')
-                <span>{{ $message }}</span>
-                @enderror
-            </div>
-            <br>
-            <div>
-                <input name="name" placeholder="Name" value="{{ old('name') }}" />
-                @error('name')
-                <span>{{ $message }}</span>
-                @enderror
-            </div>
-            <br>
-            <a href="{{ route('dashboard') }}">Cancelar</a>
-            <button>Criar</button>
+            <!--Name Field -->
+            <x-input
+                label="Nome"
+                name="name"
+                type="text"
+                placeholder="Digite o nome do link"
+                value="{{ old('name') }}"
+            />
 
-        </form>
-    </div>
+           <x-button-group>
+                <x-a href="{{ route('dashboard') }}" class="mt-6">
+                    Cancelar
+                </x-a>
+                
+                <x-button class="w-40" mt>
+                    Criar um novo link
+                </x-button>
+            </x-button-group>
+        </x-form>
+    </x-card>
 </x-layout.app>

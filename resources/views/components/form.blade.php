@@ -1,10 +1,29 @@
 @props([
     'route',
-    'post' => null    
+    'post' => null,
+    'put' => null,
+    'delete' => null,
+    'patch' => null
 ])
 
-<form action="{{ $route }}" method="{{ $post ? 'post' : 'get' }}" {{ $attributes->class(['space-y-4']) }}>
+@php
+    $method = $post || $put || $delete || $patch ? 'post' : 'get';
+@endphp
+
+<form action="{{ $route }}" method="{{ $method }}" {{ $attributes->class(['space-y-4']) }}>
     @csrf
+
+    @if ($put)
+        @method('PUT')
+    @endif
+
+    @if ($delete)
+        @method('DELETE')
+    @endif
+
+    @if ($patch)
+        @method('PATCH')
+    @endif
 
     {{ $slot }}
 </form>
